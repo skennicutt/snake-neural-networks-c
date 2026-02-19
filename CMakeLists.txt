@@ -14,3 +14,9 @@ add_executable(snake-neural-networks-c WIN32 main.cpp)
 
 # Link to the actual SDL3 library.
 target_link_libraries(snake-neural-networks-c PRIVATE SDL3::SDL3)
+
+# Enable all compiler warnings
+target_compile_options(${PROJECT_NAME} PRIVATE
+        $<$<OR:$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_ID:AppleClang>,$<CXX_COMPILER_ID:GNU>>:-Wall -Wextra -Wpedantic -Werror>
+        $<$<CXX_COMPILER_ID:MSVC>:/W4 /WX>
+)
